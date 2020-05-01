@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import LoginComponent from './Login/login';
 import SignupComponent from './Signup/signup';
@@ -24,9 +24,11 @@ firebase.initializeApp({
 const routing = (
   <Router>
     <div id='routing-container'>
+      <Redirect to='/login'></Redirect>
       <Route path='/login' component={LoginComponent}></Route>
       <Route path='/signup' component={SignupComponent}></Route>
       <Route path='/dashboard' component={DashboardComponent}></Route>
+     
     </div>
   </Router>
 );
