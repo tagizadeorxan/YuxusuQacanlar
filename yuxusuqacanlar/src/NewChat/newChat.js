@@ -1,27 +1,34 @@
 import React from 'react';
 import { FormControl, InputLabel, Input, Button, Paper, withStyles, CssBaseline, Typography } from '@material-ui/core';
 import styles from './styles';
+import './styles.css';
 const firebase = require("firebase");
 
 class NewChatComponent extends React.Component {
 
   constructor() {
     super();
+    
     this.state = {
       username: null,
-      message: null
+      message: null,
+      active: true
     };
+    console.log("ok1")
+    
   }
 
+ 
   render() {
-
+    
     const { classes } = this.props;
-
+    
     return(
-      <main className={classes.main}>
+        <>
+     {this.state.active &&  <main className={classes.main}>
         <CssBaseline/>
         <Paper className={classes.paper}>
-          <Typography component="h1" variant="h5">Send A Message!</Typography>
+          <Typography component="h1" variant="h5">Send A Message! <button className="buttonNew" onClick={this.closeModal}>x</button></Typography> 
           <form className={classes.form} onSubmit={(e) => this.submitNewChat(e)}>
             <FormControl fullWidth>
               <InputLabel htmlFor='new-chat-username'>
@@ -54,13 +61,24 @@ class NewChatComponent extends React.Component {
             null
           }
         </Paper>
-      </main>
+      </main> }
+      </>
     );
   }
+
+
 
   componentWillMount() {
     if(!firebase.auth().currentUser)
       this.props.history.push('/login');
+     
+  }
+
+
+
+  closeModal = () => {
+      this.setState({active:false})
+      
   }
 
   userTyping = (inputType, e) => {

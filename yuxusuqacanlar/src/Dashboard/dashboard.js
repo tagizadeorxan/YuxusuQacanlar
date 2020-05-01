@@ -40,7 +40,8 @@ class DashboardComponent extends React.Component {
             selectChatFn={this.selectChat} 
             chats={this.state.chats} 
             selectedChatIndex={this.state.selectedChat}
-            newChatBtnFn={this.newChatBtnClicked}>
+            newChatBtnFn={this.newChatBtnClicked}
+           >
           </ChatListComponent>
           {
             this.state.newChatFormVisible ? null : <ChatViewComponent 
@@ -86,7 +87,7 @@ class DashboardComponent extends React.Component {
   // 'user1:user2'
   buildDocKey = (friend) => [this.state.email, friend].sort().join(':');
 
-  newChatBtnClicked = () => this.setState({ newChatFormVisible: true, selectedChat: null });
+  newChatBtnClicked = () => this.setState({ newChatFormVisible: !this.state.newChatFormVisible, selectedChat: null });
 
   newChatSubmit = async (chatObj) => {
     const docKey = this.buildDocKey(chatObj.sendTo);

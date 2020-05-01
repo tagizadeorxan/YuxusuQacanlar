@@ -1,0 +1,10 @@
+.buttonNew {
+    border:none;
+    color:blue;
+    margin-left:85px;
+    margin-top:-20px;
+    text-align: center;
+    font-size: large;
+    outline: none;
+    background-color: white;
+}
