@@ -1,38 +1,118 @@
-.App {
+.globalBackground {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg stroke='%23CCC' stroke-width='0' %3E%3Crect fill='%23F5F5F5' x='-60' y='-60' width='110' height='240'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.appContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.topContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.inputContainer {
+  margin-bottom: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.inputContainer .inputField {
+  width: 30vw;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  font-size: 17px;
+  font-family: 'Handlee';
+  height: 45px;
+  padding-left: 20px;
+  border: 1px solid rgb(186, 186, 186);
+  outline: none;
+}
+
+.inputContainer .sendButton {
+  margin-left: -1px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  padding: 10px 2vw;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: 'Handlee';
+  height: 49px;
+  background: #414141;
+  color: #ffffff;
+  outline: none;
+}
+
+.userNameField {
+  width: 80px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 14px;
+  font-family: 'Handlee';
+  height: 22px;
+  padding-left: 20px;
+  border: none;
+  outline: none;
+  background: #414141;
+  color: #ffffff;
+  position: relative;
+  right: 12px;
+}
+
+.messageCount {
+  width: 120px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: 'Handlee';
+  padding: 3px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background: #414141;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.chattyMessagesBox {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-start;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  border: 1px solid #414141;
+  border-radius: 20px;
+  padding: 10px;
+  widows: 300px;
+  height: 500px;
+  width: 50%;
+  overflow-y: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.singleMessage {
+  float: left;
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+  margin-left: 6px;
+  background-color: #414141;
+  border-radius: 25px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  font-family: 'Handlee';
+  color: #ffffff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chattyIcon {
+  width: 40px;
+  border-radius: 30%;
 }

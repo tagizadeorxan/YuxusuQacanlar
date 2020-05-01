@@ -1,26 +1,124 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import firebase from 'firebase';
+import ChattyLogo from './components/ChattyLogo';
+import MessengerScreen from './components/MessengerScreen';
+import TextInput from './components/TextInput';
+import SendButton from './components/SendButton';
+import UserName from './components/UserName';
+import MessageCounter from "./components/MessageCounter";
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux";
+import { updateUserName, updateMessageCount,
+updateMessageList } from "./actions/chatActions";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const firebaseConfig = {
+  apiKey: "AIzaSyDGKJCrNUrzj5ifHQY4xRcUd1_snNt1n80",
+    authDomain: "yuxusuqacanlar.firebaseapp.com",
+    databaseURL: "https://yuxusuqacanlar.firebaseio.com",
+    projectId: "yuxusuqacanlar",
+    storageBucket: "yuxusuqacanlar.appspot.com",
+    messagingSenderId: "620751784895",
+    appId: "1:620751784895:web:0055376cbac8248a8faf0a",
+    measurementId: "G-8W9BZKK34H"
+};
+
+const chatChannel = "ChattyChat_channel_01";
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    
+    this.updateName = this.updateName.bind(this);
+    this.sendMessageToChat = this.sendMessageToChat.bind(this);
+  }
+  
+  componentDidMount() {
+
+    db.ref(chatChannel).on("child_added", snapshot => {
+      let data = snapshot.val();
+      let newMessage = `${data.user}: ${data.message}`;
+      
+      //Llamar a funciones de actions!
+      this.props.chatActions.updateMessageList(newMessage);
+      this.props.chatActions.updateMessageCount();
+    });
+  }
+  
+  updateName(event) {
+    event.preventDefault();
+        
+    let newUserName = event.target.value;
+
+    if (newUserName) {
+      //Llamar a funciones de actions!
+      this.props.chatActions.updateUserName(newUserName);      
+    }
+  }
+  
+  sendMessageToChat(event) {
+    event.preventDefault();
+
+    let messageText = event.target.elements.messageToSend.value;
+    if (messageText) {
+      let messageInfo = {
+        user: this.props.userName,
+        message: messageText,
+        timestamp: Date.now()
+      };
+      console.log(messageInfo);
+
+      db.ref(chatChannel).push(messageInfo);
+      // clean input area on click
+      event.target.elements.messageToSend.value = '';
+    }
+  }
+  
+  render() {
+    return (
+      <div className="appContainer globalBackground">
+      
+        <div className="topContainer">
+          <ChattyLogo />
+          <UserName
+            updateUserName={this.updateName}   
+          />
+        </div>
+        
+        <MessengerScreen
+          chatMessages={this.props.messageList}
+        />
+        
+        <MessageCounter
+          count={this.props.messageCount}
+        />
+        
+        <div className="inputContainer">
+          <form onSubmit={this.sendMessageToChat}>
+            <TextInput />
+            <SendButton />          
+          </form>
+        </div>
+        
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapSateToProps = state => ({
+  userName: state.userName,
+  messageCount: state.messageCount,
+  messageList: state.messageList
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  chatActions: bindActionCreators({
+    updateUserName,
+    updateMessageList,
+    updateMessageCount
+  }, dispatch)
+});
+
+export default connect(mapSateToProps, mapDispatchToProps)(App);
