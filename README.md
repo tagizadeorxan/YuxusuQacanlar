@@ -1,2 +1,0 @@
-# YuxusuQacanlar
-yuxusuqacanlar
