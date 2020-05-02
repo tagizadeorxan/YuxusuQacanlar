@@ -54,6 +54,7 @@ class LoginComponent extends React.Component {
           }
           <h5 className={classes.noAccountHeader}>Don't Have An Account?</h5>
           <Link className={classes.signUpLink} to='/signup'>Sign Up!</Link>
+          <Link className={classes.globalchat} to='/globalchat' >Global Chat</Link>
         </Paper>
       </main>
     );

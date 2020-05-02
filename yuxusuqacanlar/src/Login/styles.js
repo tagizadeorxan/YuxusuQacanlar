@@ -33,6 +33,13 @@ const styles = theme => ({
     color: '#303f9f',
     fontWeight: 'bolder'
   },
+  globalchat: {
+ 
+    textDecoration: 'none',
+    color: 'black',
+    fontWeight: 'normal',
+  alignItems:'center'
+  },
   errorText: {
     color: 'red',
     textAlign: 'center'

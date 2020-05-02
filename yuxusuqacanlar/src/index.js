@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import LoginComponent from './Login/login';
 import SignupComponent from './Signup/signup';
 import DashboardComponent from './Dashboard/dashboard';
+import GlobalChat from './GlobalChat/GlobalChat';
 
 const firebase = require("firebase");
 require("firebase/firestore"); // Required for side-effects?????
@@ -28,6 +29,7 @@ const routing = (
       <Route path='/login' component={LoginComponent}></Route>
       <Route path='/signup' component={SignupComponent}></Route>
       <Route path='/dashboard' component={DashboardComponent}></Route>
+      <Route path='/globalchat' component = {GlobalChat} ></Route>
      
     </div>
   </Router>
