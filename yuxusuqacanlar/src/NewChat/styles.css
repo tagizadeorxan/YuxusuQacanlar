@@ -8,3 +8,9 @@
     outline: none;
     background-color: white;
 }
+
+.headtext {
+    display: flex;
+    justify-content: center;
+    margin-top:55px;
+}
