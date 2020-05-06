@@ -29,7 +29,8 @@ class LoginComponent extends React.Component {
 
     return (
       <main className={classes.main}>
-      <h1 className="headtext">Yuxusu Qaçanlar by Orxan Tagizade</h1>
+      <h1 className="headtext">Yuxusu Qaçanlar</h1>
+      <p className={classes.copyright}>by Orxan Tagizade</p>
         <CssBaseline/>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h5">

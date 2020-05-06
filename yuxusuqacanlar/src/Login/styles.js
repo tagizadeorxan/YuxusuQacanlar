@@ -40,6 +40,10 @@ const styles = theme => ({
     fontWeight: 'normal',
   alignItems:'center'
   },
+  copyright: {
+   display:'flex',
+   justifyContent: 'center'
+  },
   errorText: {
     color: 'red',
     textAlign: 'center'
