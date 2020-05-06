@@ -25,10 +25,7 @@ componentDidMount(){
     this.showGlobalChat();
 }
 
-componentDidUpdate() {
-  this.showGlobalChat();
-  
-}
+
 
 
     submitMessage = () => {
@@ -46,6 +43,7 @@ componentDidUpdate() {
             receiverHasRead: false
           });
           this.setState({value:''});
+          this.showGlobalChat();
       }
 
  showGlobalChat = () => {
@@ -56,6 +54,7 @@ doc('Q6Y265wfQUN8JetGhkLt').get().then(data =>{
   let chat = [];
    data.data().messages.forEach(doc => {
        chat.push(doc.message);
+       console.log(doc);
     });
     this.setState({chat})
   })
